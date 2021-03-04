@@ -18,9 +18,43 @@ function test_scripts(){
 add_action('wp_enqueue_scripts', 'test_scripts');
 
 
+/*add_theme_support( 'custom-logo', [
+	'height'      => 290,
+	'width'       => 290,
+	'flex-width'  => false,
+	'flex-height' => false,
+	'header-text' => '',
+	'unlink-homepage-logo' => false, // WP 5.5
+] );*/
+
+
 function test_setup(){
     add_theme_support( 'post-thumbnails' );
 	add_theme_support( 'title-tag' );
+	add_theme_support( 'custom-background', array (
+		'default-color'          => '#eeeeee',
+		'default-image'          => get_stylesheet_directory_uri() . '/assets/img/image.jpg',
+		'default-repeat'         => 'no-repeat',
+		'default-position-x'     => 'center',
+		'default-attachment'	 => 'fixed'
+	 ) );
+
+	 add_theme_support( 'custom-header', array (
+		'default-color'          => '#eeeeee',
+		'default-image'          => get_stylesheet_directory_uri() . '/assets/img/img.jpg',
+		'height'      => 2000,
+		'width'       => 1300,
+	 ) );
+	
+	add_theme_support( 'custom-logo', array (
+		'height'      => 150,
+		'width'       => 40,
+		'flex-width'  => true,
+		'flex-height' => true,
+	) );
+	
+	
+	
 	register_nav_menus( array (
 		'header_menu 1' => 'Меню в шапке 1',
 		'footer_menu 2' => 'Меню в подвале 2',
@@ -37,13 +71,10 @@ function register_my_widgets(){
 		'name'          => 'Сайдбар с права',
 		'id'            => "right-sidebar",
 		'description'   => 'Сайдбар в боковой панели для вывода информации',
-		'class'         => '',
 		'before_widget' => '<div id="%1$s" class="widget %2$s">',
 		'after_widget'  => "</div>\n",
 		'before_title'  => '<h4 class="widgettitle">',
 		'after_title'   => "</h4>\n",
-		'before_sidebar' => '', // WP 5.6
-		'after_sidebar'  => '', // WP 5.6
 	) );
 }
 
