@@ -13,16 +13,18 @@
 <body <?php body_class() ?>>
 
 
-<?php if(is_front_page()): ?>
-    <div class="header-image" style="background: url(<?php echo get_custom_header()->url; ?>) center no-repeat; background-size: cover; height: 50vh;"></div>
-<?php endif; ?>
+  <?php if(is_front_page()): ?>
+  <div class="header-image"
+    style="background: url(<?php echo get_custom_header()->url; ?>) center no-repeat; background-size: cover; height: 20vh;">
+  </div>
+  <?php endif; ?>
 
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
     <?php if( has_custom_logo() ): the_custom_logo(); ?>
-        <?php else: ?>
-        <a class="navbar-brand" href="<?php echo home_url(); ?>"><?php bloginfo('name'); ?></a>
+    <?php else: ?>
+    <a class="navbar-brand" href="<?php echo home_url(); ?>"><?php bloginfo('name'); ?></a>
     <?php endif; ?>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -30,14 +32,22 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <?php wp_nav_menu( array (
-        'theme_location' => 'header_menu 1',
-        'container'       => 'nav',
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+      <?php wp_nav_menu( array (
+        'theme_location'  => 'header_menu 1',
+        'container'       => '',
         'container_class' => 'collapse navbar-collapse',
         'menu_class'      => 'navbar-nav mr-auto',
         'walker'          => new Test_Menu,
-        'container_id'         => 'navbarSupportedContent',
+        'container_id'    => 'navbarSupportedContent',
     )); ?>
+
+      <p class="test-phone" <?php if(false === get_theme_mod('test_show_phone')) echo ' style="margin-top: 20px;"' ?>>
+        Телефон: <span><?php echo get_theme_mod('test_phone'); ?></span>
+      </p>
+
+    </div>
 
     <!--<div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">

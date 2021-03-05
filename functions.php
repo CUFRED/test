@@ -1,6 +1,11 @@
 <?php
 
+include('customizer.php');
+
+//include('customize.js');
+
 require_once __DIR__ . '/Test_Menu.php';
+
 
 /*
  * Подключение скриптов и стилей
@@ -16,16 +21,6 @@ function test_scripts(){
     wp_enqueue_script('test-bootstrapjs', get_template_directory_uri() . '/assets/js/bootstrap.min.js', array('jquery'), false, true);
 }
 add_action('wp_enqueue_scripts', 'test_scripts');
-
-
-/*add_theme_support( 'custom-logo', [
-	'height'      => 290,
-	'width'       => 290,
-	'flex-width'  => false,
-	'flex-height' => false,
-	'header-text' => '',
-	'unlink-homepage-logo' => false, // WP 5.5
-] );*/
 
 
 function test_setup(){
@@ -77,6 +72,12 @@ function register_my_widgets(){
 		'after_title'   => "</h4>\n",
 	) );
 }
+
+
+function test_customize_js(){
+    wp_enqueue_script('test-customizer', get_template_directory_uri() . '/js/test-customize.js', array( 'jquery','customize-preview' ),	'', true);
+}
+add_action('customize_preview_init', 'test_customize_js');
 
 
 // удаляет H2 из шаблона пагинации
